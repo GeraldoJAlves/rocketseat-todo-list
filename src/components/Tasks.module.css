@@ -138,6 +138,14 @@
 
 .list li span {
   flex: 1;
+  max-width: 39rem;
+
+  -ms-word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 
 .list li button {

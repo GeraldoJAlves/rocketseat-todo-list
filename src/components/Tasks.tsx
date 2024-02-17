@@ -1,22 +1,36 @@
 import { Trash } from 'phosphor-react'
 import clipboard from '../assets/icons/clipboard.svg'
-import trash from '../assets/icons/trash.svg'
 import styles from './Tasks.module.css'
+import { TaskItem } from '../App'
 
-export function Tasks() {
+type TasksProps = {
+  items: TaskItem[]
+  updateTaskProgress: (id: string, done: boolean) => void
+  deleteTask: (id: string) => void
+}
+
+export function Tasks({ items, updateTaskProgress, deleteTask }: TasksProps) {
+  const totalCreated = items.length
+  const totalDone = items.reduce(
+    (acc, item) => (item.status === 'done' ? ++acc : acc),
+    0,
+  )
+
   return (
     <main className={styles.tasks}>
       <div className={styles.info}>
         <div className={styles.created}>
           <span>Tarefas criadas</span>
-          <strong>5</strong>
+          <strong>{totalCreated}</strong>
         </div>
         <div className={styles.done}>
           <span>Concluídas</span>
-          <strong>2 de 5</strong>
+          <strong>
+            {totalCreated > 0 ? `${totalDone} de ${totalCreated}` : 0}
+          </strong>
         </div>
       </div>
-      {false && (
+      {items.length === 0 ? (
         <div className={styles['empty-list']}>
           <img src={clipboard} alt="" />
           <p>
@@ -25,32 +39,26 @@ export function Tasks() {
             Crie tarefas e organize seus itens a fazer
           </p>
         </div>
+      ) : (
+        <ul className={styles.list}>
+          {items.map(({ id, name, status }) => (
+            <li key={id}>
+              <input
+                type="checkbox"
+                defaultChecked={status === 'done'}
+                title={status === 'done' ? 'Reabrir tarefa' : 'Concluir tarefa'}
+                onChange={() => {
+                  updateTaskProgress(id, status === 'open')
+                }}
+              />
+              <span>{name}</span>
+              <button onClick={() => deleteTask(id)} title="Remover tarefa">
+                <Trash size={14} weight="bold" />
+              </button>
+            </li>
+          ))}
+        </ul>
       )}
-      <ul className={styles.list}>
-        <li>
-          <input type="checkbox" />
-          <span>
-            Integer urna interdum massa libero auctor neque turpis turpis
-            semper. Duis vel sed fames integer. Integer urna interdum massa
-            libero auctor neque turpis turpis semper. Duis vel sed fames
-            integer. Integer urna interdum massa libero auctor neque turpis
-            turpis semper. Duis vel sed fames integer.
-          </span>
-          <button>
-            <Trash size={14} weight="bold" />
-          </button>
-        </li>
-        <li>
-          <input type="checkbox" />
-          <span>
-            Integer urna interdum massa libero auctor neque turpis turpis
-            semper. Duis vel sed fames integer.
-          </span>
-          <button>
-            <Trash size={14} weight="bold" />
-          </button>
-        </li>
-      </ul>
     </main>
   )
 }
