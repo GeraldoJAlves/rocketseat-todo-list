@@ -20,7 +20,7 @@ export function App() {
   useEffect(() => {
     try {
       const items = JSON.parse(
-        localStorage.getItem('@geraldev-todo-list-items')!,
+        localStorage.getItem('@geraldev-todo-list-items-1-0-0')!,
       )
       items && items.length && setListOfTasks(items)
     } catch (e) {
@@ -30,7 +30,7 @@ export function App() {
 
   useEffect(() => {
     localStorage.setItem(
-      '@geraldev-todo-list-items',
+      '@geraldev-todo-list-items-1-0-0',
       JSON.stringify(listOfTasks),
     )
   }, [listOfTasks])
