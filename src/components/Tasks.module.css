@@ -137,8 +137,9 @@
 }
 
 .list li span {
-  flex: 1;
   max-width: 39rem;
+  flex: 1;
+  overflow: hidden;
 
   -ms-word-break: break-word;
   word-wrap: break-word;
@@ -146,7 +147,9 @@
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+  white-space: wrap;
 }
+
 
 .list li button {
   background-color: transparent;
