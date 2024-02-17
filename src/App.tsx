@@ -22,7 +22,7 @@ export function App() {
       const items = JSON.parse(
         localStorage.getItem('@geraldev-todo-list-items')!,
       )
-      items.length && setListOfTasks(items)
+      items && items.length && setListOfTasks(items)
     } catch (e) {
       console.error(e)
     }
