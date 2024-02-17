@@ -1,0 +1,42 @@
+.new-task {
+  display: flex;
+  gap: .5rem;
+  margin: 0 auto;
+  transform: translate(0, -50%);
+  justify-content: center;
+}
+
+.new-task input {
+  width: 39.875rem;
+  padding: 1rem;
+  background-color: var(--gray-500);
+  color: var(--gray-300);
+  border: 0;
+  border-radius: 8px;
+}
+
+.new-task input:focus::placeholder {
+  color: var(--gray-300);
+}
+
+.new-task input:focus {
+  color: var(--gray-100);
+}
+
+.new-task button[type=submit] {
+  background-color: var(--blue-dark);
+  border: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  gap: .5rem;
+  padding: 1rem;
+  color: var(--gray-100);
+}
+
+.new-task button[type=submit]:hover {
+  background-color: var(--blue);
+  transition: background-color .2s;
+}
