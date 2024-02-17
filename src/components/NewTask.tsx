@@ -1,5 +1,6 @@
 import styles from './NewTask.module.css'
-import { PlusCircle } from 'phosphor-react'
+
+import plus from '../assets/icons/plus.svg'
 
 export function NewTask() {
   return (
@@ -7,7 +8,7 @@ export function NewTask() {
       <input type="text" placeholder="Adicione uma nova tarefa" />
       <button type="submit">
         Criar
-        <PlusCircle size={24} />
+        <img src={plus} alt="" />
       </button>
     </form>
   )
